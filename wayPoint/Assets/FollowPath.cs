@@ -50,6 +50,13 @@ public class FollowPath : MonoBehaviour
         currentWP = 0;
     }
 
+    public void GoToFactory()
+    {
+        //calcula o caminho para o waypoit 5
+        g.AStar(currentNode, wps[4]);
+        currentWP = 0;
+    }
+
     void LateUpdate()
     {
         //não fazer nada se a lista de nós for igual a zero ou se p wayPoint atrual for igual ao tamanho da lista de nós
