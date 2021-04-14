@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
+    /*
     //transform do objetivo
     Transform goal;
     //velocidade que o tanque se move
@@ -11,54 +12,73 @@ public class FollowPath : MonoBehaviour
     //distancia entre o objetivo e o tanque para que mude o objetivo
     float accuracy = 1.0f;
     //velocidade de rotação
-    float rotSpeed = 2.0f;
+    float rotSpeed = 2.0f;*/
 
     //variavel para pegar o GameObject em que esta o escript WPManager
     public GameObject wpManager;
     //lista de WayPoints
     GameObject[] wps;
+    //variavel do tipo navmesh agent
+    UnityEngine.AI.NavMeshAgent agent;
+
+    /*
     //nó atual
     GameObject currentNode;
     //Waypoint atual
     int currentWP = 0;
     //variavel do grafo
-    Graph g;
+    Graph g;*/
     // Start is called before the first frame update
     void Start()
     {
         //pega os WayPoints do wpManager e atribui a  variavel wps
         wps = wpManager.GetComponent<WpManager>().waypoints;
+        //pega o navmeshagent e atribui a  variavel agent
+        agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+
+        /*
         //pega o graph do wpManager e atribui a  variavel g
         g = wpManager.GetComponent<WpManager>().graph;
         //iguala o nó atual a posição zero dowps
-        currentNode = wps[0];
+        currentNode = wps[0];*/
     }
 
     //função para ir ao heliporto
     public void GoToHeli()
     {
+
+        agent.SetDestination(wps[1].transform.position);
+
+        /*
         //calcula o caminho para o waypoit 1
         g.AStar(currentNode, wps[1]);
-        currentWP = 0;
+        currentWP = 0;*/
     }
 
     //função para ir ate as ruinas
     public void GoToRuin()
     {
+        agent.SetDestination(wps[6].transform.position);
+
+        /*
         //calcula o caminho para o waypoit 6
         g.AStar(currentNode, wps[6]);
-        currentWP = 0;
+        currentWP = 0;*/
     }
 
     public void GoToFactory()
     {
+        agent.SetDestination(wps[4].transform.position);
+
+        /*
         //calcula o caminho para o waypoit 5
         g.AStar(currentNode, wps[4]);
-        currentWP = 0;
+        currentWP = 0;*/
     }
 
     void LateUpdate()
     {
+        /*
         //não fazer nada se a lista de nós for igual a zero ou se p wayPoint atrual for igual ao tamanho da lista de nós
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
             return;
@@ -93,5 +113,6 @@ public class FollowPath : MonoBehaviour
 
         //faz o tanque se mover
         transform.Translate(0, 0, speed * Time.deltaTime);
+        */
     }
 }
